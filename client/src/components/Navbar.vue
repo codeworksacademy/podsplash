@@ -1,49 +1,26 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 
-const theme = ref(loadState('theme') || 'light')
-
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-}
-
-watch(theme, () => {
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}, { immediate: true })
 
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-md bg-codeworks border-bottom border-vue">
+  <nav class="navbar navbar-expand-md border-bottom border-primary">
     <div class="container gap-2">
-      <RouterLink :to="{ name: 'Home' }" class="d-flex align-items-center text-light">
-        <img class="navbar-brand" alt="logo" src="/img/cw-logo.png" height="45" />
-        <b class="fs-5">Vue Starter</b>
+      <RouterLink :to="{ name: 'Home' }" class="d-flex align-items-center fs-3">
+        <span class="mdi mdi-sine-wave me-2 text-primary"></span>
+        <b class="lobster-font text-dark">Podsplash</b>
       </RouterLink>
       <!-- collapse button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="mdi mdi-menu text-light"></span>
+        <span class="mdi mdi-menu text-primary"></span>
       </button>
       <!-- collapsing menu -->
       <div class="collapse navbar-collapse " id="navbar-links">
-        <ul class="navbar-nav">
-          <li>
-            <RouterLink :to="{ name: 'About' }" class="btn text-green selectable">
-              About
-            </RouterLink>
-          </li>
-        </ul>
+        <ul class="navbar-nav"></ul>
         <!-- LOGIN COMPONENT HERE -->
         <div class="ms-auto">
-          <button class="btn text-light" @click="toggleTheme"
-            :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-            <i v-if="theme == 'dark'" class="mdi mdi-weather-sunny"></i>
-            <i v-if="theme == 'light'" class="mdi mdi-weather-night"></i>
-          </button>
         </div>
         <Login />
       </div>

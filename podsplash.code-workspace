@@ -31,6 +31,9 @@
       "titleBar.inactiveBackground": "#ede61599",
       "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#ede615"
+    "peacock.color": "#ede615",
+    "cSpell.words": [
+      "Podsplash"
+    ]
   }
 }
