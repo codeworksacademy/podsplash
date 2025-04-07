@@ -10,7 +10,7 @@ import { dbContext } from '../db/DbContext.js'
 async function createAccountIfNeeded(account, user) {
   if (!account) {
     user._id = user.id
-    if(typeof user.name == 'string' && user.name.includes('@')){
+    if (typeof user.name == 'string' && user.name.includes('@')) {
       user.name = user.nickname
     }
     account = await dbContext.Account.create({
@@ -76,6 +76,31 @@ class AccountService {
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     )
     return account
+  }
+
+  async createDummyAccounts() {
+
+    let accounts = await dbContext.Account.find({ name: ['King Orca', 'Shrimpy Pete'] })
+
+    if (accounts.length == 2) {
+      return accounts
+    }
+
+    const dummies = [
+      {
+        name: 'King Orca',
+        email: 'kingorca@king.orca',
+        picture: 'https://images.unsplash.com/photo-1661238791648-4cb796dfd82a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b3JjYXxlbnwwfHwwfHx8Mg%3D%3D'
+      },
+      {
+        name: 'Shrimpy Pete',
+        email: 'shrimpypete@shrimpy.pete',
+        picture: 'https://images.unsplash.com/photo-1722192147966-14444c832f53?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hyaW1wfGVufDB8fDB8fHwy'
+      }
+    ]
+
+    accounts = await dbContext.Account.create(dummies)
+    return accounts
   }
 }
 export const accountService = new AccountService()
