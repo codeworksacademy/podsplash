@@ -8,7 +8,7 @@ defineProps({
 
 
 <template>
-  <div class="bg-light rounded-pill shadow-lg mb-3 d-flex">
+  <div class="pod-card rounded-pill bg-light mb-3 d-flex" role="button">
     <img :src="pod.coverImg" :alt="'Cover image for ' + pod.name" class="pod-img">
     <div class="p-3">
       <b>{{ pod.name }}</b>
@@ -18,8 +18,14 @@ defineProps({
 
 
 <style lang="scss" scoped>
-.rounded-pill {
+.pod-card {
   overflow: hidden;
+  box-shadow: 0 6px 8px #9d9d9d;
+  transition: box-shadow .5s ease-in-out;
+}
+
+.pod-card:hover {
+  box-shadow: 0 6px 6px #6ae1ff;
 }
 
 .pod-img {

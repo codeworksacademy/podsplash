@@ -34,7 +34,10 @@ async function getPods() {
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="lobster-font my-3">Find your Pod</h2>
+        <h2 class="my-3">
+          <span class="lobster-font">Find your Pod</span>
+          <button class="btn btn-outline-primary rounded-pill ms-4">New Pod+</button>
+        </h2>
       </div>
     </div>
     <div class="row">
